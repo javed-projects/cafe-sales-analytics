@@ -65,6 +65,25 @@ The main objectives of this project are to:
 
 ---
 
+## 📊 Dashboard Preview
+
+### Overview
+![Overview](Overview.png)
+
+### Sales Analysis
+![Sales Analysis](Sales.png)
+
+### Product Analysis
+![Product Analysis](Products.png)
+
+### Transaction Analysis
+![Transaction Analysis](transactions.png)
+
+### Dashboard
+![Dashboard](dashboard.png)
+
+---
+
 ## 🔄 Project Workflow
 
 The project followed a structured analytics workflow:
