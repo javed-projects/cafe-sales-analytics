@@ -1,0 +1,147 @@
+/* =========================================================
+   CAFE SALES ANALYSIS PROJECT
+   ========================================================= */
+
+USE CafeSales;
+GO
+
+/* =========================================================
+   1. View Complete Dataset
+   ========================================================= */
+SELECT *
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   2. Total Number of Orders
+   ========================================================= */
+SELECT COUNT(*) AS Total_Orders
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   3. Total Revenue
+   ========================================================= */
+SELECT
+    SUM(Total_spent_calculated) AS Total_Revenue
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   4. Average Order Value
+   ========================================================= */
+SELECT
+    AVG(Total_spent_calculated) AS Average_Order_Value
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   5. Highest Transaction Value
+   ========================================================= */
+SELECT
+    MAX(Total_spent_calculated) AS Highest_Transaction
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   6. Lowest Transaction Value
+   ========================================================= */
+SELECT
+    MIN(Total_spent_calculated) AS Lowest_Transaction
+FROM dbo.cleaned_cafe_sales;
+
+/* =========================================================
+   7. Revenue by Product
+   ========================================================= */
+SELECT
+    Item,
+    SUM(Total_spent_calculated) AS Revenue
+FROM dbo.cleaned_cafe_sales
+GROUP BY Item
+ORDER BY Revenue DESC;
+
+/* =========================================================
+   8. Quantity Sold by Product
+   ========================================================= */
+SELECT
+    Item,
+    SUM(Quantity) AS Total_Quantity_Sold
+FROM dbo.cleaned_cafe_sales
+GROUP BY Item
+ORDER BY Total_Quantity_Sold DESC;
+
+/* =========================================================
+   9. Number of Orders by Product
+   ========================================================= */
+SELECT
+    Item,
+    COUNT(*) AS Total_Orders
+FROM dbo.cleaned_cafe_sales
+GROUP BY Item
+ORDER BY Total_Orders DESC;
+
+/* =========================================================
+   10. Revenue by Payment Method
+   ========================================================= */
+SELECT
+    Payment_Method,
+    SUM(Total_spent_calculated) AS Revenue
+FROM dbo.cleaned_cafe_sales
+GROUP BY Payment_Method
+ORDER BY Revenue DESC;
+
+/* =========================================================
+   11. Revenue by Location
+   ========================================================= */
+SELECT
+    Location,
+    SUM(Total_spent_calculated) AS Revenue
+FROM dbo.cleaned_cafe_sales
+GROUP BY Location
+ORDER BY Revenue DESC;
+
+/* =========================================================
+   12. Monthly Revenue
+   ========================================================= */
+
+SELECT
+    YEAR(Transaction_Date) AS Year,
+    MONTH(Transaction_Date) AS Month,
+    SUM(Total_spent_calculated) AS Revenue
+FROM dbo.cleaned_cafe_sales
+GROUP BY YEAR(Transaction_Date), MONTH(Transaction_Date)
+ORDER BY Year, Month;
+
+
+/* =========================================================
+   13. Top 10 Highest Transactions
+   ========================================================= */
+
+SELECT TOP 10
+    Transaction_ID,
+    Item,
+    Total_spent_calculated
+FROM dbo.cleaned_cafe_sales
+ORDER BY Total_spent_calculated DESC;
+
+
+/* =========================================================
+   14. Average Revenue by Product
+   ========================================================= */
+
+SELECT
+    Item,
+    AVG(Total_spent_calculated) AS Average_Revenue
+FROM dbo.cleaned_cafe_sales
+GROUP BY Item
+ORDER BY Average_Revenue DESC;
+
+
+/* =========================================================
+   15. Average Quantity Sold by Product
+   ========================================================= */
+
+SELECT
+    Item,
+    AVG(Quantity) AS Average_Quantity
+FROM dbo.cleaned_cafe_sales
+GROUP BY Item
+ORDER BY Average_Quantity DESC;
+
+SELECT *
+FROM dbo.cleaned_cafe_sales;
